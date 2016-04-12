@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!-- css  -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+      <title>Reference Platform</title>
+    </head>
+
+    <body>
+      <nav class="white" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="./" class="teal-text text-lighten-2">Reference</a>
+        </div>
+      </nav>
+
+      <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="row center">
+              <div class="card">
+                <div class="card-image">
+                  <img id="reference-graph" src="http://0.0.0.0:4100/ref/v0.1/home/aliq1">
+                </div>
+                <!-- <div class="progress" id="update-progress">
+                    <div class="indeterminate"></div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container center">
+        <a class="waves-effect waves-light btn" onclick="return home_aliq1();"><i class="home-aliq1 material-icons left ">visibility</i>Aliq1</a>
+        <a class="waves-effect waves-light btn" onclick="return home_aliq2();"><i class="home-aliq2 material-icons right ">visibility</i>Aliq2</a>
+      </div>
+      <br/>
+
+
+      <!-- Modal Infos -->
+      <div id="info-modal" class="modal bottom-sheet">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
+
+      <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="large material-icons tooltipped" data-position="left" data-delay="50" data-tooltip="menu">work</i>
+        </a>
+        <ul>
+          <li class="tooltipped" data-position="left" data-delay="50" data-tooltip="data sets"><a class="btn-floating red" href="./sets"><i class="material-icons">insert_chart</i></a></li>
+          <!-- <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li> -->
+          <li class="tooltipped" data-position="left" data-delay="50" data-tooltip="evaluate data set"><a class="btn-floating green"><i class="material-icons">done</i></a></li>
+          <li class="tooltipped" data-position="left" data-delay="50" data-tooltip="infos"><a class="btn-floating blue"><i class="material-icons">live_help</i></a></li>
+        </ul>
+      </div>
+
+      <!-- <div class="container">
+        <div class="section">
+
+          <ul class="collapsible" data-collapsible="accordion">
+            <li>
+              <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+              <div class="collapsible-body">
+                <div class="card">
+                  <div class="card-image">
+                    <img class="reference-graph" src="background2.jpg">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+              <div class="collapsible-body">
+                <div class="card">
+                  <div class="card-image">
+                    <img class="reference-graph" src="background3.jpg">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+              <div class="collapsible-body">
+                <div class="card">
+                  <div class="card-image">
+                    <img class="reference-graph" src="background2.jpg">
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div> -->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+      <script type="text/javascript">
+        function home_aliq1()
+        {
+            background = document.getElementById('reference-graph');
+            background.src = "http://0.0.0.0:4100/ref/v0.1/home/aliq1";
+        }
+
+        function home_aliq2()
+        {
+            background = document.getElementById('reference-graph');
+            background.src = "http://0.0.0.0:4100/ref/v0.1/home/aliq2";
+        }
+
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,8 @@
+*.png
+*.xlsx
+*.pyc
+data/*
+*.egg-info
+*~
+_site
+*._*
