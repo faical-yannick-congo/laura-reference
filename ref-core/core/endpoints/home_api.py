@@ -18,11 +18,10 @@ import thread
 from StringIO import StringIO
 from utils import Build
 
-@app.route(CORE_URL + '/home/<aliq>', methods=['GET','POST','PUT','UPDATE','DELETE'])
+@app.route(CORE_URL + '/home', methods=['GET','POST','PUT','UPDATE','DELETE'])
 @crossdomain(origin='*')
-def home(aliq):
+def home():
     if fk.request.method == 'GET':
-        # aliq = "aliq1"
         _refs = [r for r in ReferenceModel.objects()]
         _ref = _refs[-1]
         if _ref:
@@ -31,7 +30,7 @@ def home(aliq):
             else:
                 file_buffer = None
                 try:
-                    filename = 'error-{0}-{1}.png'.format(str(_ref.id),aliq)
+                    filename = 'error-{0}.png'.format(str(_ref.id))
                     with open('plots/{0}'.format(filename), 'r') as _file:
                         file_buffer = StringIO(_file.read())
                     file_buffer.seek(0)

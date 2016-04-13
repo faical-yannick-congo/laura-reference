@@ -47,9 +47,9 @@ def plot_set(set_id):
     else:
         return core_response(405, 'Method not allowed', 'This endpoint supports only a GET method.')
 
-@app.route(CORE_URL + '/plot/raw/<ref_id>/<aliq>', methods=['GET','POST','PUT','UPDATE','DELETE'])
+@app.route(CORE_URL + '/plot/raw/<ref_id>', methods=['GET','POST','PUT','UPDATE','DELETE'])
 @crossdomain(origin='*')
-def plot_raw(ref_id, aliq):
+def plot_raw(ref_id):
     if fk.request.method == 'GET':
         _ref = ReferenceModel.objects(id=ref_id).first()
         if _ref:
@@ -58,7 +58,7 @@ def plot_raw(ref_id, aliq):
             else:
                 file_buffer = None
                 try:
-                    filename = 'ref-{0}-{1}.png'.format(ref_id,aliq)
+                    filename = 'ref-{0}.png'.format(ref_id)
                     with open('plots/{0}'.format(filename), 'r') as _file:
                         file_buffer = StringIO(_file.read())
                     file_buffer.seek(0)
@@ -73,9 +73,9 @@ def plot_raw(ref_id, aliq):
     else:
         return core_response(405, 'Method not allowed', 'This endpoint supports only a GET method.')
 
-@app.route(CORE_URL + '/plot/stats/<ref_id>/<aliq>', methods=['GET','POST','PUT','UPDATE','DELETE'])
+@app.route(CORE_URL + '/plot/stats/<ref_id>', methods=['GET','POST','PUT','UPDATE','DELETE'])
 @crossdomain(origin='*')
-def plot_stats(ref_id, aliq):
+def plot_stats(ref_id):
     if fk.request.method == 'GET':
         _ref = ReferenceModel.objects(id=ref_id).first()
         if _ref:
@@ -84,7 +84,7 @@ def plot_stats(ref_id, aliq):
             else:
                 file_buffer = None
                 try:
-                    filename = 'stats-ref-{0}-{1}.png'.format(ref_id,aliq)
+                    filename = 'stats-ref-{0}.png'.format(ref_id)
                     with open('plots/{0}'.format(filename), 'r') as _file:
                         file_buffer = StringIO(_file.read())
                     file_buffer.seek(0)

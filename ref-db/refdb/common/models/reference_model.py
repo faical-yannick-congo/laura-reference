@@ -7,15 +7,15 @@ class ReferenceModel(db.Document):
     created_at = db.StringField(default=str(datetime.datetime.utcnow()))
     name = db.StringField()
     sizes = db.DictField()
-    fit_pressure = db.DictField() # {'aliq1':[], {'aliq2':[]}
-    sd_uptake = db.DictField() # {'aliq1':[], {'aliq2':[]}
-    av_uptake = db.DictField() # {'aliq1':[], {'aliq2':[]}
-    mn_uptake = db.DictField() # {'aliq1':[], {'aliq2':[]}
-    md_uptake = db.DictField() # {'aliq1':[], {'aliq2':[]}
-    sets = db.DictField(default={}) # Set ids list inclued for this reference.
+    fit_pressure = db.ListField()
+    sd_uptake = db.ListField()
+    av_uptake = db.ListField()
+    mn_uptake = db.ListField()
+    md_uptake = db.ListField()
+    sets = db.DictField() # Set ids list inclued for this reference.
     possible_status = ["new", "done"]
     status = db.StringField(default="new", choices=possible_status)
-    formula = db.DictField(default={})
+    formula = db.ListField()
 
     def clone(self):
         del self.__dict__['_id']

@@ -95,9 +95,9 @@ def reference_evaluate_data(ref_id):
     </form>
     """
 
-@app.route(CORE_URL + '/reference/evaluate/plot/<ref_id>/<aliq>', methods=['GET','POST','PUT','UPDATE','DELETE'])
+@app.route(CORE_URL + '/reference/evaluate/plot/<ref_id>', methods=['GET','POST','PUT','UPDATE','DELETE'])
 @crossdomain(origin='*')
-def reference_evaluate_plot(ref_id, aliq):
+def reference_evaluate_plot(ref_id):
     if fk.request.method == 'POST':
         _ref = ReferenceModel.objects.with_id(ref_id)
         if _ref is None:
@@ -146,8 +146,7 @@ def reference_evaluate_plot(ref_id, aliq):
                         # print str(evals)
                         os.remove(file_path)
                         _set.delete()
-                        # reslt_path = evaluation.plot(aliq)
-                        reslt_path = evaluation.error(aliq)
+                        reslt_path = evaluation.error()
                         file_buffer = None
                         try:
                             with open(reslt_path, 'r') as _file:
@@ -189,9 +188,8 @@ def reference_all():
         refs = {'total_refs':0, 'refs':[]}
         for _ref in ReferenceModel.objects():
             if len(_ref.formula) == 0 and _ref.status == "done":
-                z_1 = np.polyfit(_ref.fit_pressure['aliq1'], _ref.mn_uptake['aliq1'], 30)
-                z_2 = np.polyfit(_ref.fit_pressure['aliq2'], _ref.mn_uptake['aliq2'], 30)
-                _ref.formula = {'aliq1':z_1.tolist(), 'aliq2':z_2.tolist()}
+                z = np.polyfit(_ref.fit_pressure, _ref.mn_uptake, 30)
+                _ref.formula = z.tolist()
                 _ref.save()
             refs['refs'].append(_ref.summary())
         refs['total_refs'] = len(refs['refs'])
@@ -214,14 +212,10 @@ def reference_delete(ref_id):
                     set_.save()
             else:
                 try:
-                    ref_a1 = 'plots/ref-{0}-aliq1.png'.format(str(_ref.id))
-                    ref_a2 = 'plots/ref-{0}-aliq2.png'.format(str(_ref.id))
-                    os.remove(ref_a1)
-                    os.remove(ref_a2)
-                    sta_a1 = 'plots/stats-ref-{0}-aliq1.png'.format(str(_ref.id))
-                    sta_a2 = 'plots/stats-ref-{0}-aliq2.png'.format(str(_ref.id))
-                    os.remove(sta_a1)
-                    os.remove(sta_a2)
+                    ref_ = 'plots/ref-{0}.png'.format(str(_ref.id))
+                    os.remove(ref_)
+                    sta_ = 'plots/stats-ref-{0}.png'.format(str(_ref.id))
+                    os.remove(sta_)
                     print "Reference stats deleted."
                 except:
                     print traceback.print_exc()
